@@ -90,6 +90,7 @@ shell.Run """" & dest & """", 0, False
 
 ---
 ## Scripts used
+
 ### main.py
 The main logic for keylogger. It uses pynput library, which uses `keyboard.Listener()` that 'listens' or captures keystrokes. The pynput library is fully used for keyboard and mouse monitoring. What each function in main.py does:-
 1. ** process_key(key): ** Processes a single keystroke, formats it for logging, and sends it to an external function (send_keystroke()) with a timestamp. It also handles special cases like the ESC key to stop the keylogger.
@@ -103,6 +104,21 @@ The main logic for keylogger. It uses pynput library, which uses `keyboard.Liste
      - Return Value: Implicitly returns None.
 The script terminates when `ESC` is pressed on keyboard.
 ---
+
+### encryption.py
+
+- Uses `cryptography` library's `fernet` class that generates a key and stores it in a file. 
+- The library also helps in encryption and decryption. The key is used to and encrypt and decrypt keystroke data.
+- The `load_key()` uses the existing key from key file for `encrypt(message)` and `decrypt(token)` operations. --- The `encrypt(message)` takes a string as an input and encrypts it into Fernet token(ciphertext).
+- The `decrypt(token)` takes a Fernet token as input and decrypts it into original plaintext, using the key.
+note: without the key, encryption and decryption won't take place.
+
+---
+
+### exfil.py
+
+- Exfiltrates data to local server
+- 
 
 ## 🚫 Disclaimer
 
