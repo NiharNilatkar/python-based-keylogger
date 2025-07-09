@@ -62,7 +62,6 @@ python main.py
 pyinstaller --onefile --noconsole main.py
 ```
 Make sure you have started your virtual environment before executing this command, otherwise you may face issues while running .exe file.
-Converts main.py to .exe file so that it runs as a program.
 Output will be in `dist/SystemMonitor.exe`
 
 ---
@@ -117,26 +116,44 @@ note: without the key, encryption and decryption won't take place.
 
 ### exfil.py
 
-- Exfiltrates data to local server
-- 
+- Exfiltrates data from keylogger and sends it to local flask server
+- It uses `requests` library to make HTTP POST requests to flask server
+- It uses `json` library to store the keylogger data in JSON format before sending it as POST request.
+- The `send_keystroke(raw,timestamp,url)` takes raw input(keystroke) and its time, along with URL which is your local device address and port 5000(default for flask), and sends info to the server endpoint `/capture`
+- The function takes data as a dictionary that matches what your server expects(raw, timestamp). It will be converted to JSON and sent as the request body.
 
-## 🚫 Disclaimer
+---
 
-This project was developed **only for educational demonstrations** in ethical hacking labs and internships. Misuse may be punishable under cybercrime laws.
+### server.py
+
+- Basic server using `flask` module. This server is set up to capture each keystroke with timestamp. 
+- The use of '/view' and '/capture' is explained in description of `server.py` attachment.
+- We have imported functions `encrypt()` and `decrypt()`, so that we can encrypt the logs that will be stored in `keystrokes.txt` and view decrypted data at `/view` route.
+- The server starts at port 5000 and host='0.0.0.0' allows access from any device on the same network (useful if the keylogger is on a different machine).
+- The `/upload` route accepts full log files from the client. You could upload `keystrokes.txt` from any device using /upload route.
+
+## Important
+Press `ESC` button to terminate the keylogger program, if unable to do it so from task manager, and vice versa.
+
+---
+
+## Disclaimer
+
+This project was developed **only for educational demonstrations** as a part of my internship. Misuse may be punishable under cybercrime laws.
 
 > Be smart. Be ethical. Use your skills to protect, not harm.
 
 ---
 
-## 📄 Credits
+## Credits
 
 * Python `pynput` for keystroke monitoring
 * Flask for exfil server
 * Cryptography for Fernet encryption
-* Steghide for payload concealment
+  
 
 ---
 
-**Author:** \[Your Name Here]
-**GitHub:** \[github.com/yourusername]
-**LinkedIn:** \[linkedin.com/in/yourprofile]
+**Author:** \Nihar Sameer Nilatkar
+**GitHub:** \github.com/NiharNilatkar
+**LinkedIn:** \https://www.linkedin.com/in/nihar-nilatkar-6a0135332/
