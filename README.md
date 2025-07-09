@@ -154,6 +154,6 @@ This project was developed **only for educational demonstrations** as a part of 
 
 ---
 
-**Author:** \Nihar Sameer Nilatkar
-**GitHub:** \github.com/NiharNilatkar
-**LinkedIn:** \https://www.linkedin.com/in/nihar-nilatkar-6a0135332/
+**Author:** Nihar Sameer Nilatkar  
+**GitHub:** github.com/NiharNilatkar  
+**LinkedIn:** https://www.linkedin.com/in/nihar-nilatkar-6a0135332/  
